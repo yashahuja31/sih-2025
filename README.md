@@ -26,9 +26,13 @@ Supporting Data
 
 • Urban Mobility India Report 2024, emphasizing transport inefficiencies in tier-2 cities.
 
+
 Organization	Government of Punjab
+
 Department	Department of Higher Education
+
 Category	Software
+
 Theme	Transportation & Logistics
 
 2. Disaster Response Drone for Remote Areas (25047)
@@ -44,9 +48,13 @@ A working drone prototype with a mobile app for disaster management teams to coo
 Technical Feasibility
 
 Employs existing drone hardware with open-source flight control software (e.g., Ardupilot) and AI algorithms for navigation, tested in simulated disaster scenarios.
+
 Organization	Government of Odisha
+
 Department	Electronics & IT Department
+
 Category	Hardware
+
 Theme	Robotics and Drones
 
 3. Al-Based Rockfall Prediction and Alert System for Open-Pit Mines (25071)
@@ -77,9 +85,13 @@ Expected Solution
 Impact
 
 The solution should be cost-effective, scalable for different mine sites, and adaptable for both public and private mining operations, enabling safer and more resilient mining practices.
+
 Organization	Ministry of Mines
+
 Department	National Institute of Rock Mechanics (NIRM)
+
 Category	Software
+
 Theme	Disaster Management
 
 4. Development of Sensor for Detection Of Microplastics (25036)
@@ -95,8 +107,13 @@ The project aims to develop a low-cost, efficient, and portable sensor capable o
 Expected Solution
 
 The expected outcome is a compact, field-deployable sensor system that can detect and quantify microplastics in water samples within minutes. It should offer reasonable sensitivity (down to 10–100 μm), operate on battery or solar power, and require minimal sample preparation. Additionally, the solution may include a companion software interface for data logging, visualization, and analysis. This innovation should have strong potential for adoption in microplastic monitoring, supporting researchers, environmental agencies, and water quality managers in making faster, data-driven decisions for pollution control and mitigation.
+
 Organization	Ministry of Earth Sciences (MoES)
+
 Department	Ministry of Earth Sciences (MoES)
+
 Category	Hardware
+
 Theme	Miscellaneous
+
 Dataset Link	https://cb.imsc.res.in/saopadditives/ https://pmc.ncbi.nlm.nih.gov/articles/PMC10589325/ https://marinedebris.noaa.gov/
