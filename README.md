@@ -206,9 +206,13 @@ Blue LED Excitation → Fluorescent Plastic Particles → Visual Detection → M
 The **Nile Red + Foldscope solution** represents a breakthrough in accessible microplastics detection technology. By combining established fluorescence chemistry with innovative paper microscopy, we deliver:
 
 ✅ **98% cost reduction** compared to existing methods
+
 ✅ **Chemical specificity** for true plastic identification  
+
 ✅ **Field deployment** capability with zero infrastructure
+
 ✅ **Immediate results** for real-time decision making
+
 ✅ **Global scalability** for widespread environmental monitoring
 
 This solution directly addresses the MoES problem statement by providing a **low-cost, efficient, portable sensor** that enables **real-time microplastics detection** in field conditions, supporting **data-driven decisions for pollution control and mitigation**.
