@@ -1,0 +1,179 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>FAQ Chatbot</title>
+  <style>
+    body { font-family: Arial, sans-serif; background:#f4f4f4; padding:20px; }
+    #chat { border:1px solid #ccc; background:#fff; padding:10px; width:500px; height:400px; overflow-y:auto; }
+    .user { color:blue; margin:5px 0; }
+    .bot { color:green; margin:5px 0; }
+    .options { margin-top:10px; }
+    .options button { margin:3px; padding:6px 12px; }
+    #input { width:380px; padding:6px; }
+    #sendBtn { padding:6px 12px; }
+  </style>
+</head>
+<body>
+  <h2>Microplastics Detection Sensor — FAQ Chatbot</h2>
+  <div id="chat"></div>
+  <div id="options" class="options"></div>
+  <div style="margin-top:10px;">
+    <input id="input" type="text" placeholder="Type your own question...">
+    <button id="sendBtn">Send</button>
+  </div>
+
+  <script>
+    const chat = document.getElementById("chat");
+    const optionsDiv = document.getElementById("options");
+    const inputEl = document.getElementById("input");
+    const sendBtn = document.getElementById("sendBtn");
+
+    function addMessage(sender, text, cls) {
+      const msg = document.createElement("div");
+      msg.className = cls;
+      msg.textContent = sender + ": " + text;
+      chat.appendChild(msg);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    function showOptions(opts) {
+      optionsDiv.innerHTML = "";
+      opts.forEach(opt => {
+        const btn = document.createElement("button");
+        btn.textContent = opt;
+        btn.onclick = () => handleUserChoice(opt);
+        optionsDiv.appendChild(btn);
+      });
+    }
+
+    function handleUserChoice(choice) {
+      addMessage("You", choice, "user");
+      respond(choice);
+    }
+
+    function getClosestMatch(input) {
+      let bestMatch = null;
+      let bestScore = Infinity;
+      faqOptions.forEach(opt => {
+        const score = levenshtein(input.toLowerCase(), opt.toLowerCase());
+        if (score < bestScore) {
+          bestScore = score;
+          bestMatch = opt;
+        }
+      });
+      return bestScore <= 10 ? bestMatch : null;
+    }
+
+    function respond(choice) {
+      let reply = null;
+      let nextOptions = faqOptions;
+
+      switch(choice.toLowerCase()) {
+        case "what problem does this project solve?":
+          reply = "It provides a low-cost, portable sensor to detect microplastics in water, unlike expensive and lab-only methods such as FTIR or Raman spectroscopy.";
+          break;
+        case "how does the sensor work?":
+          reply = "Add Rhodamine B dye to the water, expose to UV LED light (plastics glow pink/red), capture image with Foldscope + Raspberry Pi, and analyze with ML model.";
+          break;
+        case "what accuracy does it achieve?":
+          reply = "Current prototype: ~85–90%. Future upgrade: ~90–98%.";
+          break;
+        case "what is the detection range?":
+          reply = "Rhodamine B: 20–500 µm. Nile Red upgrade: 10–500 µm.";
+          break;
+        case "how long does testing take?":
+          reply = "About 5–10 minutes per sample (Rhodamine B) or 5–15 minutes (Nile Red).";
+          break;
+        case "what hardware is needed?":
+          reply = "Foldscope kit, UV LED, Raspberry Pi with camera, optional filters/pump, slides, tubing, and power.";
+          break;
+        case "what is the total cost?":
+          reply = "The prototype costs about ₹12,000–18,000, much cheaper than lab spectrometers (₹10L+).";
+          break;
+        case "what consumables are required?":
+          reply = "Rhodamine B dye, microscope slides, covers, pipettes, and filter papers.";
+          break;
+        case "what software is used?":
+          reply = "Raspberry Pi OS, Python + OpenCV, CNN/ResNet ML model, optional Gemini API for reporting.";
+          break;
+        case "who can benefit from this sensor?":
+          reply = "NGOs, students, researchers, environmental agencies, and communities without lab access.";
+          break;
+        case "what’s the roadmap for development?":
+          reply = "Phase 1: Hackathon demo. Phase 2: Add filters & better dataset. Phase 3: Nile Red + Blue LED upgrade.";
+          break;
+        case "why is this impactful?":
+          reply = "It’s affordable, portable, and scalable, making microplastic detection accessible worldwide.";
+          break;
+        case "exit":
+          reply = "Goodbye!";
+          nextOptions = [];
+          break;
+      }
+
+      if (!reply) {
+        const suggestion = getClosestMatch(choice);
+        if (suggestion) {
+          reply = `I didn't find an exact answer. Did you mean: "${suggestion}"?`;
+        } else {
+          reply = "Sorry, I don't have information about that. Please select a question from the list.";
+        }
+      }
+
+      setTimeout(() => {
+        addMessage("Bot", reply, "bot");
+        if (nextOptions.length > 0) showOptions(nextOptions);
+        else optionsDiv.innerHTML = "";
+      }, 400);
+    }
+
+    sendBtn.onclick = () => {
+      const text = inputEl.value.trim();
+      if (!text) return;
+      addMessage("You", text, "user");
+      inputEl.value = "";
+      respond(text);
+    };
+
+    // Levenshtein distance algorithm
+    function levenshtein(a, b) {
+      const matrix = Array.from({length: a.length+1}, () => []);
+      for (let i = 0; i <= a.length; i++) matrix[i][0] = i;
+      for (let j = 0; j <= b.length; j++) matrix[0][j] = j;
+      for (let i = 1; i <= a.length; i++) {
+        for (let j = 1; j <= b.length; j++) {
+          if (a[i-1] === b[j-1]) matrix[i][j] = matrix[i-1][j-1];
+          else matrix[i][j] = Math.min(
+            matrix[i-1][j-1] + 1,
+            matrix[i][j-1] + 1,
+            matrix[i-1][j] + 1
+          );
+        }
+      }
+      return matrix[a.length][b.length];
+    }
+
+    // FAQ options list
+    const faqOptions = [
+      "What problem does this project solve?",
+      "How does the sensor work?",
+      "What accuracy does it achieve?",
+      "What is the detection range?",
+      "How long does testing take?",
+      "What hardware is needed?",
+      "What is the total cost?",
+      "What consumables are required?",
+      "What software is used?",
+      "Who can benefit from this sensor?",
+      "What’s the roadmap for development?",
+      "Why is this impactful?",
+      "Exit"
+    ];
+
+    // start conversation
+    addMessage("Bot", "Hello! I can answer FAQs about the Microplastics Detection Sensor. Please choose a question or type your own:", "bot");
+    showOptions(faqOptions);
+  </script>
+</body>
+</html>
