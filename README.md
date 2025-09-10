@@ -2,7 +2,7 @@
 
 # 📄 README (Hackathon-Friendly Version)
 
-# Rhodamine B + Foldscope: Low-Cost Microplastics Detection Sensor
+# Rhodamine B & UV Light/ Nile Red & Blue LED + Foldscope: Low-Cost Microplastics Detection Sensor
 
 ## 🚩 Problem Statement
 
