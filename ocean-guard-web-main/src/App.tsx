@@ -11,6 +11,7 @@ import Reports from "./pages/Reports";
 import Chatbot from "./pages/Chatbot";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
+import Chatroom from "./pages/Chatroom";
 
 const queryClient = new QueryClient();
 
@@ -23,8 +24,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Index />} />
-            <Route path="samples" element={<Samples />} />
-            <Route path="comparisons" element={<Comparisons />} />
+            <Route path="chatroom" element={<Chatroom/>} />
             <Route path="reports" element={<Reports />} />
             <Route path="chatbot" element={<Chatbot />} />
             <Route path="settings" element={<Settings />} />

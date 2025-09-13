@@ -39,7 +39,7 @@ All colors MUST be HSL.
     --ring: 188 78% 41%;
 
     /* Dashboard specific design tokens */
-    --dashboard-bg: 248 250 252;
+    --dashboard-bg: 210 40% 98%;
     --card-hover: 0 0% 98%;
     
     /* Gradients */

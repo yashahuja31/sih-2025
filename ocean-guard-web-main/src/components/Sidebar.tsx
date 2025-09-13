@@ -3,19 +3,22 @@ import { NavLink } from "react-router-dom";
 import {
   LayoutDashboard,
   TestTube,
-  GitCompare,
   FileText,
   MessageSquare,
   Settings,
-  Menu,
   X,
+  Camera,
+  MessageCircle,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navItems = [
   { name: "Dashboard", href: "/", icon: LayoutDashboard },
-  { name: "Samples", href: "/samples", icon: TestTube },
-  { name: "Comparisons", href: "/comparisons", icon: GitCompare },
+   { 
+      name: 'Chat Room', 
+      href: '/chatroom', 
+      icon: MessageCircle
+    },
   { name: "Reports", href: "/reports", icon: FileText },
   { name: "Chatbot", href: "/chatbot", icon: MessageSquare },
   { name: "Settings", href: "/settings", icon: Settings },
@@ -36,7 +39,7 @@ export function Sidebar({ isOpen, onToggle }: SidebarProps) {
           onClick={onToggle}
         />
       )}
-      
+
       {/* Sidebar */}
       <div
         className={cn(
